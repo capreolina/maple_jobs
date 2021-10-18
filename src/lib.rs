@@ -1,12 +1,18 @@
 pub mod job;
 
 use job::Job;
-use std::collections::HashMap;
+use std::{collections::HashMap, io::Read};
 
 pub fn from_str<S: AsRef<str>>(
     s: S,
 ) -> ron::error::Result<HashMap<String, Job>> {
     ron::from_str(s.as_ref())
+}
+
+pub fn from_reader<R: Read>(
+    rdr: R,
+) -> ron::error::Result<HashMap<String, Job>> {
+    ron::de::from_reader(rdr)
 }
 
 #[cfg(test)]

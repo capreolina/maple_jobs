@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use std::convert::TryFrom;
+use std::{convert::TryFrom, io::Read};
 
 #[derive(Debug, PartialEq, Deserialize, Serialize)]
 pub struct Job {
@@ -243,6 +243,10 @@ impl TryFrom<u8> for WepType {
 
 pub fn from_str<S: AsRef<str>>(s: S) -> ron::error::Result<Job> {
     ron::from_str(s.as_ref())
+}
+
+pub fn from_reader<R: Read>(rdr: R) -> ron::error::Result<Job> {
+    ron::de::from_reader(rdr)
 }
 
 #[cfg(test)]
