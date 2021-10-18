@@ -1,0 +1,16 @@
+[package]
+name = "maple_jobs"
+version = "0.1.0"
+authors = ["deer <capreolina@protonmail.ch>"]
+edition = "2018"
+description = """Handles a particular RON format for specifying a set of \
+pre-BB MapleStory jobs."""
+homepage = "https://codeberg.org/deer/rangifer_diary/src/branch/master/068"
+repository = "https://codeberg.org/deer/maple_jobs"
+license = "Apache-2.0 OR MIT"
+keywords = ["maplestory", "odd_jobs", "pre-bb", "ron"]
+categories = ["data-structures", "encoding"]
+
+[dependencies]
+ron = "0.6.5"
+serde = { version = "1.0.130", features = ["derive"] }
