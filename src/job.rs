@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use std::{convert::TryFrom, io::Read};
+use std::{convert::TryFrom, fmt, io::Read};
 
 #[derive(Debug, PartialEq, Deserialize, Serialize)]
 pub struct Job {
@@ -49,6 +49,51 @@ pub enum Class {
     Aran,
     Evan1st,
     Evan,
+}
+
+impl fmt::Display for Class {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Beginner => f.write_str("beginner"),
+            Self::Swordman => f.write_str("sword(wo)man"),
+            Self::Fighter => f.write_str("fighter"),
+            Self::Page => f.write_str("page"),
+            Self::Spearman => f.write_str("spear(wo)man"),
+            Self::Magician => f.write_str("magician"),
+            Self::FP => f.write_str("F/P"),
+            Self::IL => f.write_str("I/L"),
+            Self::Cleric => f.write_str("cleric"),
+            Self::Archer => f.write_str("archer"),
+            Self::Hunter => f.write_str("hunter"),
+            Self::Crossbowman => f.write_str("crossbow(o)man"),
+            Self::Rogue => f.write_str("rogue"),
+            Self::Assassin => f.write_str("assassin"),
+            Self::Bandit => f.write_str("bandit"),
+            Self::DualBlade => f.write_str("dual blade"),
+            Self::Pirate => f.write_str("pirate"),
+            Self::Brawler => f.write_str("brawler"),
+            Self::Gunslinger => f.write_str("gunslinger"),
+            Self::Noblesse => f.write_str("noblesse"),
+            Self::DawnWarrior1st => f.write_str("dawn warrior (1st grade)"),
+            Self::DawnWarrior => f.write_str("dawn warrior"),
+            Self::BlazeWizard1st => f.write_str("blaze wizard (1st grade)"),
+            Self::BlazeWizard => f.write_str("blaze wizard"),
+            Self::WindArcher1st => f.write_str("wind archer (1st grade)"),
+            Self::WindArcher => f.write_str("wind archer"),
+            Self::NightWalker1st => f.write_str("night walker (1st grade)"),
+            Self::NightWalker => f.write_str("night walker"),
+            Self::ThunderBreaker1st => {
+                f.write_str("thunder breaker (1st grade)")
+            }
+            Self::ThunderBreaker => f.write_str("thunder breaker"),
+            Self::AranBeginner => f.write_str("aran (beginner)"),
+            Self::EvanBeginner => f.write_str("evan (beginner)"),
+            Self::Aran1st => f.write_str("aran (1st grade)"),
+            Self::Aran => f.write_str("aran"),
+            Self::Evan1st => f.write_str("evan (1st grade)"),
+            Self::Evan => f.write_str("evan"),
+        }
+    }
 }
 
 impl From<Class> for u16 {
@@ -151,6 +196,16 @@ pub enum Location {
     Outland,
 }
 
+impl fmt::Display for Location {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Camp => f.write_str("Camp"),
+            Self::MapleIsland => f.write_str("Maple Island"),
+            Self::Outland => f.write_str("outland"),
+        }
+    }
+}
+
 #[derive(Debug, PartialEq, Deserialize, Serialize)]
 pub struct Stats {
     pub primary: Vec<Stat>,
@@ -166,6 +221,19 @@ pub enum Stat {
     LUK,
     MAXHP,
     MAXMP,
+}
+
+impl fmt::Display for Stat {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::STR => f.write_str("STR"),
+            Self::DEX => f.write_str("DEX"),
+            Self::INT => f.write_str("INT"),
+            Self::LUK => f.write_str("LUK"),
+            Self::MAXHP => f.write_str("MAXHP"),
+            Self::MAXMP => f.write_str("MAXMP"),
+        }
+    }
 }
 
 #[derive(Debug, PartialEq, Eq, Deserialize, Serialize)]
@@ -207,6 +275,29 @@ pub enum WepType {
     Claw = 147,
     Knuckler = 148,
     Gun = 149,
+}
+
+impl fmt::Display for WepType {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::OneHandedSword => f.write_str("one-handed sword"),
+            Self::OneHandedAxe => f.write_str("one-handed axe"),
+            Self::OneHandedMace => f.write_str("one-handed BW"),
+            Self::Dagger => f.write_str("dagger"),
+            Self::Wand => f.write_str("wand"),
+            Self::Staff => f.write_str("staff"),
+            Self::TwoHandedSword => f.write_str("two-handed sword"),
+            Self::TwoHandedAxe => f.write_str("two-handed axe"),
+            Self::TwoHandedMace => f.write_str("two-handed BW"),
+            Self::Spear => f.write_str("spear"),
+            Self::Polearm => f.write_str("polearm"),
+            Self::Bow => f.write_str("bow"),
+            Self::Crossbow => f.write_str("crossbow"),
+            Self::Claw => f.write_str("claw"),
+            Self::Knuckler => f.write_str("knuckler"),
+            Self::Gun => f.write_str("gun"),
+        }
+    }
 }
 
 impl From<WepType> for u8 {
