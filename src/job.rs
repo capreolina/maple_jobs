@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::{convert::TryFrom, fmt, io::Read};
 
-#[derive(Debug, PartialEq, Deserialize, Serialize)]
+#[derive(Clone, Debug, PartialEq, Deserialize, Serialize)]
 pub struct Job {
     pub classes: Vec<Class>,
     pub location: Location,
@@ -11,7 +11,7 @@ pub struct Job {
     pub skills: Option<Vec<u32>>,
 }
 
-#[derive(Debug, PartialEq, Eq, Deserialize, Serialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Deserialize, Serialize)]
 pub enum Class {
     Beginner,
     Swordman,
@@ -189,7 +189,7 @@ impl TryFrom<u16> for Class {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Deserialize, Serialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Deserialize, Serialize)]
 pub enum Location {
     Camp,
     MapleIsland,
@@ -206,14 +206,14 @@ impl fmt::Display for Location {
     }
 }
 
-#[derive(Debug, PartialEq, Deserialize, Serialize)]
+#[derive(Clone, Debug, PartialEq, Deserialize, Serialize)]
 pub struct Stats {
     pub primary: Vec<Stat>,
     pub secondary: Vec<Stat>,
     pub constraints: Vec<Vec<StatConstraint>>,
 }
 
-#[derive(Debug, PartialEq, Eq, Deserialize, Serialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Deserialize, Serialize)]
 pub enum Stat {
     STR,
     DEX,
@@ -236,27 +236,27 @@ impl fmt::Display for Stat {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Deserialize, Serialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Deserialize, Serialize)]
 pub enum StatConstraint {
     Less(Stat),
     Ful(Stat),
     Pure(Stat),
 }
 
-#[derive(Debug, PartialEq, Deserialize, Serialize)]
+#[derive(Clone, Debug, PartialEq, Deserialize, Serialize)]
 pub struct Weaponry {
     pub allowed: WepSet,
     pub canonical: WepSet,
 }
 
-#[derive(Debug, PartialEq, Deserialize, Serialize)]
+#[derive(Clone, Debug, PartialEq, Deserialize, Serialize)]
 pub enum WepSet {
     All,
     WepTypes(Vec<WepType>),
     WepIds(Vec<u32>),
 }
 
-#[derive(Debug, PartialEq, Eq, Deserialize, Serialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Deserialize, Serialize)]
 #[repr(u8)]
 pub enum WepType {
     OneHandedSword = 130,
