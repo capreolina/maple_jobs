@@ -277,6 +277,30 @@ pub enum WepType {
     Gun = 149,
 }
 
+impl WepType {
+    /// "Staves"!!!
+    pub fn plural(&self) -> &'static str {
+        match self {
+            Self::OneHandedSword => "one-handed swords",
+            Self::OneHandedAxe => "one-handed axes",
+            Self::OneHandedMace => "one-handed BWs",
+            Self::Dagger => "daggers",
+            Self::Wand => "wands",
+            Self::Staff => "staves",
+            Self::TwoHandedSword => "two-handed swords",
+            Self::TwoHandedAxe => "two-handed axes",
+            Self::TwoHandedMace => "two-handed BWs",
+            Self::Spear => "spears",
+            Self::Polearm => "polearms",
+            Self::Bow => "bows",
+            Self::Crossbow => "crossbows",
+            Self::Claw => "claws",
+            Self::Knuckler => "knucklers",
+            Self::Gun => "guns",
+        }
+    }
+}
+
 impl fmt::Display for WepType {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
